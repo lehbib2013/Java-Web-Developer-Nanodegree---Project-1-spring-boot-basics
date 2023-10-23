@@ -10,18 +10,26 @@
     </head>
     <body class="p-3 mb-2 bg-light text-black">
         <div class="container justify-content-center w-50 p-3" style="margin-top: 5em;">
-            <div class="alert alert-success fill-parent">
+            <div   th:if="${feedback == 'success'}" class="alert alert-success fill-parent">
                 <h1 class="display-5" id="success">Success</h1>
-                <span>Your changes were successfully saved. Click <a>here</a> to continue.</span>
+                <span>Your changes were successfully saved. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
-            <div class="alert alert-danger fill-parent">
+            <div th:if="${feedback == 'error'}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
-                <span>Your changes were not saved. Click <a>here</a> to continue.</span>
+                <span>Your changes were not saved. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
-            <div class="alert alert-danger fill-parent">
-                <h1 class="display-5">Error</h1>
-                <span>Example Error Message</span>
-                <span>Click <a>here</a> to continue.</span>
+            <div th:if="${feedback == 'error'}" class="alert alert-danger fill-parent">
+                <h1 class="display-5" id="error">Error</h1>
+                <span th:text="${errorMessage}">Example Error Message</span>
+                <span>Click <a th:href="@{/home}">here</a> to continue.</span>
+            </div>
+            <div th:if="${feedback == 'errorDuplicate'}" class="alert alert-danger fill-parent">
+                <h1 class="display-5">Error duplicate file name</h1>
+                <span>Duplicate file name message. <a th:href="@{/home}">here</a> to continue.</span>
+            </div>
+            <div th:if="${feedback == 'errorEmpty'}" class="alert alert-danger fill-parent">
+                <h1 class="display-5">Empty selected file</h1>
+                <span>empty selected File error message. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
         </div>
     </body>
